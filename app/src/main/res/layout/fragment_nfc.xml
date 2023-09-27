@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NfcFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#1B3065"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30sp"
+                android:layout_marginBottom="10sp"
+                android:layout_weight="1"
+                android:fontFamily="@font/lato_bold"
+                android:text="ДЕРАТИЗАЦИЯ"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="40sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/imageButtonBack"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="108dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/arrow1" />
+
+                <Spinner
+                    android:id="@+id/spinnerWarehouses"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50sp"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginRight="50sp"
+                    android:layout_marginBottom="10sp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#FFFFFF"
+                    android:foregroundGravity="center_vertical"
+                    android:gravity="center"
+                    android:persistentDrawingCache="scrolling"
+                    android:scrollbarSize="30dp"
+                    android:scrollbarStyle="insideInset"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/lato_bold"
+                    android:textColor="@android:color/white" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:layout_marginBottom="50sp"
+            android:fontFamily="@font/lato"
+            android:text="Информация на метке"
+            android:textAlignment="center"
+            android:textColor="#356DFA"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewTag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:hint="_________________"
+                android:textAlignment="center"
+                android:textColor="#356DFA"
+                android:textColorHint="#356DFA"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40sp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="318dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/lato"
+                    android:text="Номер точки контроля"
+                    android:textAlignment="center"
+                    android:textColor="#356DFA"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/editTextControllNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20sp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#E8EEF7"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:shadowColor="#000000"
+                    android:textAlignment="center"
+                    android:textColor="#356DFA"
+                    android:textColorHint="#356DFA" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonPlus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginRight="15sp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#E8EEF7"
+                    android:fontFamily="@font/lato_bold"
+                    android:maxLines="2"
+                    android:shadowRadius="0"
+                    android:text="Приманка ИНТАКТНА"
+                    android:textColor="#356DFA"
+                    android:textSize="15sp"
+                    app:cornerRadius="10sp" />
+
+                <Button
+                    android:id="@+id/button50"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15sp"
+                    android:layout_marginRight="20sp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#E8EEF7"
+                    android:fontFamily="@font/lato_bold"
+                    android:maxLines="2"
+                    android:shadowRadius="0"
+                    android:text="ПОГРЫЗЫ приманки"
+                    android:textColor="#356DFA"
+                    android:textSize="15sp"
+                    app:cornerRadius="10sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonGr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginRight="15sp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#E8EEF7"
+                    android:fontFamily="@font/lato_bold"
+                    android:maxLines="2"
+                    android:shadowRadius="0"
+                    android:text="обнаружен грызун"
+                    android:textColor="#356DFA"
+                    android:textSize="15sp"
+                    app:cornerRadius="10sp" />
+
+                <Button
+                    android:id="@+id/buttonPrOt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15sp"
+                    android:layout_marginRight="20sp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#E8EEF7"
+                    android:fontFamily="@font/lato_bold"
+                    android:maxLines="2"
+                    android:shadowRadius="0"
+                    android:text="приманка отсутствует"
+                    android:textColor="#356DFA"
+                    android:textSize="15sp"
+                    app:cornerRadius="10sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonKont"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginRight="15sp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#E8EEF7"
+                    android:fontFamily="@font/lato_bold"
+                    android:maxLines="2"
+                    android:shadowRadius="0"
+                    android:text="контейнер поврежден"
+                    android:textColor="#356DFA"
+                    android:textSize="15sp"
+                    app:cornerRadius="10sp" />
+
+                <Button
+                    android:id="@+id/buttonMeh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15sp"
+                    android:layout_marginRight="20sp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#E8EEF7"
+                    android:fontFamily="@font/lato_bold"
+                    android:maxLines="2"
+                    android:shadowRadius="0"
+                    android:text="механизм поврежден"
+                    android:textColor="#356DFA"
+                    android:textSize="15sp"
+                    app:cornerRadius="10sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="60sp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonNed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginRight="15sp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#E8EEF7"
+                    android:fontFamily="@font/lato_bold"
+                    android:maxLines="2"
+                    android:shadowRadius="0"
+                    android:text="контейнер недоступен"
+                    android:textColor="#356DFA"
+                    android:textSize="16sp"
+                    app:cornerRadius="10sp" />
+
+                <Button
+                    android:id="@+id/buttonOt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15sp"
+                    android:layout_marginRight="20sp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#E8EEF7"
+                    android:fontFamily="@font/lato_bold"
+                    android:maxLines="2"
+                    android:shadowRadius="0"
+                    android:text="контейнер отсутствует"
+                    android:textColor="#356DFA"
+                    android:textSize="15sp"
+                    app:cornerRadius="10sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:foregroundGravity="bottom"
+                android:gravity="bottom"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="77dp"
+                    android:layout_height="35dp"
+                    android:layout_weight="1"
+                    tools:srcCompat="@drawable/load" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/lato_bold"
+                    android:gravity="center"
+                    android:text="ДЕЗЦЕНТРБРЯНСК © | 2023"
+                    android:textAlignment="center"
+                    android:textColor="#356DFA" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>
