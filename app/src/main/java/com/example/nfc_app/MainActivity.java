@@ -21,8 +21,12 @@ import android.os.StrictMode;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -43,6 +47,9 @@ public class MainActivity extends AppCompatActivity  {
     boolean writeMode;
     Tag myTag;
     Context context;
+
+    String[] parseText;
+    byte[] currentTagId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,17 +97,65 @@ public class MainActivity extends AppCompatActivity  {
                  .commit();
     }
 
+    private void writeLog(String log) {
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yy", Locale.getDefault());
+        String dateText = dateFormat.format(date);
+
+        String fileName = dateText+".txt";
+        String documentsPath = System.getenv("EXTERNAL_STORAGE") + "/Documents/Dezcenter_Logs";
+        File directory = new File(documentsPath);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+        File file = new File(directory, fileName);
+
+        try {
+            FileWriter writer = new FileWriter(file, true);
+            writer.append(log+"\n");
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {}
+    }
+
+    private String hexIdToStringId(byte[] hexId){
+        String stringId = new String();
+        String x;
+        for (int i = 0; i < hexId.length - 1; i++) {
+             x= Integer.toHexString(((int) hexId[i] & 0xff));
+            if (x.length() == 1) {
+                x = '0' + x;
+            }
+            stringId += x + ':';
+        }
+
+        x= Integer.toHexString(((int) hexId[hexId.length - 1] & 0xff));
+        if (x.length() == 1) {
+            x = '0' + x;
+        }
+        stringId += x;
+
+        return stringId;
+    }
+
     public void writeTag(String text, String controllNum, String wirehouse){
         try{
             if (myTag == null) {
                 Toast.makeText(context, ErrorDetected, Toast.LENGTH_LONG).show();
             } else {
                 Date date = new Date();
-                DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+                DateFormat dateFormat = new SimpleDateFormat("dd.MM.yy", Locale.getDefault());
                 String dateText = dateFormat.format(date);
-                write("#"+1+"-"+dateText+"-"+text+"-"+wirehouse+"-"+controllNum,myTag);//TODO вставить id
 
-                Toast.makeText(context, WriteSuccess, Toast.LENGTH_LONG).show();
+                if (!controllNum.equals("")) {
+                    write(dateText + "-" +  wirehouse + "-#" + controllNum + "-" + text, myTag);
+                    writeLog(hexIdToStringId(currentTagId).toUpperCase() + "-" + dateText + "-" +  wirehouse + "-#" +  controllNum + "-" + text );
+                }
+                else{
+                    write(dateText + "-" +  wirehouse + "-" + parseText[2] + "-" + text, myTag);
+                    writeLog(hexIdToStringId(currentTagId).toUpperCase() + "-" + dateText + "-" +  wirehouse + "-" + parseText[2] + "-" + text );
+                }
+                    Toast.makeText(context, WriteSuccess, Toast.LENGTH_LONG).show();
             }
         }catch (Exception e){
             Toast.makeText(context, ErrorWrite, Toast.LENGTH_LONG).show();
@@ -112,6 +167,7 @@ public class MainActivity extends AppCompatActivity  {
         if(NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)||NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action)||NfcAdapter.ACTION_TECH_DISCOVERED.equals(action)){
             Parcelable[] rawMsgs = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
             NdefMessage[] msgs = null;
+            currentTagId = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID);
             if (rawMsgs != null){
                 msgs = new NdefMessage[rawMsgs.length];
                 for (int i = 0; i <rawMsgs.length; i++) {
@@ -135,6 +191,7 @@ public class MainActivity extends AppCompatActivity  {
 
         try {
             text = new String(payload, languageCodeLength+1, payload.length - languageCodeLength - 1, textEncoding);
+            parseText = text.split("-");
         } catch (UnsupportedEncodingException e) {
             Log.e("кодировка не поддерживается", e.toString());
         }

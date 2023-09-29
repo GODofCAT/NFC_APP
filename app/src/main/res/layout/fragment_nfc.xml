@@ -10,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#FFFFFF"
         android:orientation="vertical">
 
         <LinearLayout
@@ -58,13 +59,13 @@
                     android:layout_marginBottom="10sp"
                     android:layout_weight="1"
                     android:backgroundTint="#FFFFFF"
+                    android:fontFamily="@font/lato_bold"
                     android:foregroundGravity="center_vertical"
                     android:gravity="center"
                     android:persistentDrawingCache="scrolling"
                     android:scrollbarSize="30dp"
                     android:scrollbarStyle="insideInset"
                     android:textAlignment="center"
-                    android:fontFamily="@font/lato_bold"
                     android:textColor="@android:color/white" />
 
             </LinearLayout>
@@ -92,12 +93,12 @@
                 android:id="@+id/textViewTag"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10sp"
+                android:layout_marginBottom="30sp"
                 android:hint="_________________"
                 android:textAlignment="center"
                 android:textColor="#356DFA"
                 android:textColorHint="#356DFA"
-                android:textSize="24sp" />
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -301,6 +302,7 @@
                     android:layout_width="77dp"
                     android:layout_height="35dp"
                     android:layout_weight="1"
+                    android:scaleType="centerInside"
                     tools:srcCompat="@drawable/load" />
 
                 <TextView

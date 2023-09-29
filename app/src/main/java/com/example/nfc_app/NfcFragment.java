@@ -158,55 +158,55 @@ public class NfcFragment extends Fragment {
     View.OnClickListener button50OnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            ((MainActivity)getActivity()).writeTag("50", editTextControllNum.getText().toString(), selection);
+            ((MainActivity)getActivity()).writeTag("`Прогрыз`", editTextControllNum.getText().toString(), selection);
         }
     };
     View.OnClickListener buttonGrOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            ((MainActivity)getActivity()).writeTag("Gr", editTextControllNum.getText().toString(), selection);
+            ((MainActivity)getActivity()).writeTag("`Гр`", editTextControllNum.getText().toString(), selection);
         }
     };
 
     View.OnClickListener buttonKontOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            ((MainActivity)getActivity()).writeTag("Kont", editTextControllNum.getText().toString(), selection);
+            ((MainActivity)getActivity()).writeTag("`КонтПовр`", editTextControllNum.getText().toString(), selection);
         }
     };
 
     View.OnClickListener buttonMehOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            ((MainActivity)getActivity()).writeTag("Meh", editTextControllNum.getText().toString(), selection);
+            ((MainActivity)getActivity()).writeTag("`МехПовр`", editTextControllNum.getText().toString(), selection);
         }
     };
 
     View.OnClickListener buttonNedOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            ((MainActivity)getActivity()).writeTag("Ned", editTextControllNum.getText().toString(), selection);
+            ((MainActivity)getActivity()).writeTag("`КонтНед`", editTextControllNum.getText().toString(), selection);
         }
     };
 
     View.OnClickListener buttonOtOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            ((MainActivity)getActivity()).writeTag("Ot", editTextControllNum.getText().toString(), selection);
+            ((MainActivity)getActivity()).writeTag("`КонтОт`", editTextControllNum.getText().toString(), selection);
         }
     };
 
     View.OnClickListener buttonPrOtOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            ((MainActivity)getActivity()).writeTag("PrOt", editTextControllNum.getText().toString(), selection);
+            ((MainActivity)getActivity()).writeTag("`ПрОт`", editTextControllNum.getText().toString(), selection);
         }
     };
 
     View.OnClickListener buttonPlusOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            ((MainActivity)getActivity()).writeTag("+", editTextControllNum.getText().toString(), selection);
+            ((MainActivity)getActivity()).writeTag("`+`", editTextControllNum.getText().toString(), selection);
         }
     };
 
