@@ -158,7 +158,7 @@ public class NfcFragment extends Fragment {
     View.OnClickListener button50OnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            ((MainActivity)getActivity()).writeTag("`Прогрыз`", editTextControllNum.getText().toString(), selection);
+            ((MainActivity)getActivity()).writeTag("`Погрыз`", editTextControllNum.getText().toString(), selection);
         }
     };
     View.OnClickListener buttonGrOnClick = new View.OnClickListener() {
