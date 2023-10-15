@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity  {
 
          mainFragment = new MainFragment();
          getSupportFragmentManager().beginTransaction()
-                 .add(R.id.frameLayout, mainFragment)
+                 .replace(R.id.frameLayout, mainFragment)
                  .commit();
     }
 
