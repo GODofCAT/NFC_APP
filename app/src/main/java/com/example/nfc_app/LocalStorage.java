@@ -5,6 +5,13 @@ import java.util.Map;
 
 public class LocalStorage {
     static public Map<String, Object> storage = new HashMap<>();
+
+    public enum fragments {
+      MainFragment,
+      NfcFragment,
+      DezinsecFragment
+    }
+
     static public String[] warehouses = {
             "Брянский_Бройлер_ББ",
             "ВСУЗ_БМК",

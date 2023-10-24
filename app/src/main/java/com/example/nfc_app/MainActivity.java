@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.os.StrictMode;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedWriter;
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity  {
 
     private MainFragment mainFragment;
     private NfcFragment nfcFragment;
+
+    private DezinsecFragment dezinsecFragment;
 
     public static final String ErrorDetected = "NFC метка не найдена";
     public static final String WriteSuccess = "Запись прошла успешно!";
@@ -61,6 +64,9 @@ public class MainActivity extends AppCompatActivity  {
 
         nfcFragment = new NfcFragment();
         LocalStorage.storage.put("nfcFragment", nfcFragment);
+
+        dezinsecFragment = new DezinsecFragment();
+        LocalStorage.storage.put("dezinsecFragment", dezinsecFragment);
 
         StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder(StrictMode.getVmPolicy())
                 .detectLeakedClosableObjects()
@@ -90,11 +96,11 @@ public class MainActivity extends AppCompatActivity  {
         tagDetected.addCategory(Intent.CATEGORY_DEFAULT);
         writingTagFilter = new IntentFilter[]{tagDetected};
 
-
-         mainFragment = new MainFragment();
-         getSupportFragmentManager().beginTransaction()
-                 .replace(R.id.frameLayout, mainFragment)
-                 .commit();
+        LocalStorage.storage.put("current fragment", LocalStorage.fragments.MainFragment);
+        mainFragment = new MainFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frameLayout, mainFragment)
+                .commit();
     }
 
     private void writeLog(String log) {
@@ -157,6 +163,7 @@ public class MainActivity extends AppCompatActivity  {
                 }
                     Toast.makeText(context, WriteSuccess, Toast.LENGTH_LONG).show();
             }
+
         }catch (Exception e){
             Toast.makeText(context, ErrorWrite, Toast.LENGTH_LONG).show();
         }
@@ -180,7 +187,21 @@ public class MainActivity extends AppCompatActivity  {
 
     @SuppressLint("LongLogTag")
     private void buildTagViews(NdefMessage[] msgs){
+        TextView viewTag = null;
+        LocalStorage.fragments fragment = (LocalStorage.fragments) LocalStorage.storage.get("current fragment");
+        switch (fragment){
+            case NfcFragment:
+                viewTag = nfcFragment.textViewTag;
+                break;
+            case DezinsecFragment:
+                viewTag = dezinsecFragment.textViewTagDezinsec;
+                break;
+            default:
+                return;
+        }
+
         if (msgs == null || msgs.length == 0){
+            viewTag.setText("null");
             return;
         }
 
@@ -196,7 +217,8 @@ public class MainActivity extends AppCompatActivity  {
             Log.e("кодировка не поддерживается", e.toString());
         }
 
-        nfcFragment.textViewTag.setText(text);
+        viewTag.setText(text);
+
     }
 
     private void write(String text, Tag tag) throws IOException, FormatException {
@@ -213,7 +235,8 @@ public class MainActivity extends AppCompatActivity  {
         String lang = "en";
         byte[] textBytes = text.getBytes();
         byte[] langBytes = lang.getBytes("US-ASCII");
-        int langLength = langBytes.length;
+        int langLength =
+                langBytes.length;
         int textLength = textBytes.length;
         byte[] payLoad = new byte[1+langLength+textLength];
 

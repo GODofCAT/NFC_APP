@@ -135,7 +135,7 @@
                 android:id="@+id/textViewTag"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="50dp"
                 android:hint="_________________"
                 android:textAlignment="center"
                 android:textColor="#356DFA"
@@ -145,165 +145,159 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="0dp"
-                android:orientation="horizontal">
+                android:layout_marginBottom="20dp"
+                android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/buttonPlus"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10sp"
-                    android:layout_marginRight="5sp"
                     android:layout_marginBottom="0dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#E8EEF7"
-                    android:fontFamily="@font/lato_bold"
-                    android:maxLines="2"
-                    android:shadowRadius="0"
-                    android:text="Приманка ИНТАКТНА"
-                    android:textColor="#356DFA"
-                    android:textSize="14sp"
-                    app:cornerRadius="10sp" />
+                    android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/button50"
+                    <Button
+                        android:id="@+id/buttonPlus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10sp"
+                        android:layout_marginRight="5sp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#E8EEF7"
+                        android:fontFamily="@font/lato_bold"
+                        android:maxLines="2"
+                        android:shadowRadius="0"
+                        android:text="Приманка ИНТАКТНА"
+                        android:textColor="#356DFA"
+                        android:textSize="14sp"
+                        app:cornerRadius="10sp" />
+
+                    <Button
+                        android:id="@+id/button50"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5sp"
+                        android:layout_marginRight="10sp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#E8EEF7"
+                        android:fontFamily="@font/lato_bold"
+                        android:maxLines="2"
+                        android:shadowRadius="0"
+                        android:text="ПОГРЫЗЫ приманки"
+                        android:textColor="#356DFA"
+                        android:textSize="14sp"
+                        app:cornerRadius="10sp" />
+
+                    <Button
+                        android:id="@+id/buttonKont"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10sp"
+                        android:layout_marginRight="5sp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#E8EEF7"
+                        android:fontFamily="@font/lato_bold"
+                        android:maxLines="2"
+                        android:shadowRadius="0"
+                        android:text="контейнер поврежден"
+                        android:textColor="#356DFA"
+                        android:textSize="14sp"
+                        app:cornerRadius="10sp" />
+
+                    <Button
+                        android:id="@+id/buttonMeh"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5sp"
+                        android:layout_marginRight="10sp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#E8EEF7"
+                        android:fontFamily="@font/lato_bold"
+                        android:maxLines="2"
+                        android:shadowRadius="0"
+                        android:text="механизм поврежден"
+                        android:textColor="#356DFA"
+                        android:textSize="14sp"
+                        app:cornerRadius="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5sp"
-                    android:layout_marginRight="10sp"
                     android:layout_marginBottom="0dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#E8EEF7"
-                    android:fontFamily="@font/lato_bold"
-                    android:maxLines="2"
-                    android:shadowRadius="0"
-                    android:text="ПОГРЫЗЫ приманки"
-                    android:textColor="#356DFA"
-                    android:textSize="14sp"
-                    app:cornerRadius="10sp" />
-            </LinearLayout>
+                    android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="0dp"
-                android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/buttonGr"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10sp"
+                        android:layout_marginRight="5sp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#E8EEF7"
+                        android:fontFamily="@font/lato_bold"
+                        android:maxLines="2"
+                        android:shadowRadius="0"
+                        android:text="обнаружен грызун"
+                        android:textColor="#356DFA"
+                        android:textSize="14sp"
+                        app:cornerRadius="10sp" />
 
-                <Button
-                    android:id="@+id/buttonGr"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10sp"
-                    android:layout_marginRight="5sp"
-                    android:layout_marginBottom="0dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#E8EEF7"
-                    android:fontFamily="@font/lato_bold"
-                    android:maxLines="2"
-                    android:shadowRadius="0"
-                    android:text="обнаружен грызун"
-                    android:textColor="#356DFA"
-                    android:textSize="14sp"
-                    app:cornerRadius="10sp" />
+                    <Button
+                        android:id="@+id/buttonPrOt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5sp"
+                        android:layout_marginRight="10sp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#E8EEF7"
+                        android:fontFamily="@font/lato_bold"
+                        android:maxLines="2"
+                        android:shadowRadius="0"
+                        android:text="приманка отсутствует"
+                        android:textColor="#356DFA"
+                        android:textSize="14sp"
+                        app:cornerRadius="10sp" />
 
-                <Button
-                    android:id="@+id/buttonPrOt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5sp"
-                    android:layout_marginRight="10sp"
-                    android:layout_marginBottom="0dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#E8EEF7"
-                    android:fontFamily="@font/lato_bold"
-                    android:maxLines="2"
-                    android:shadowRadius="0"
-                    android:text="приманка отсутствует"
-                    android:textColor="#356DFA"
-                    android:textSize="14sp"
-                    app:cornerRadius="10sp" />
-            </LinearLayout>
+                    <Button
+                        android:id="@+id/buttonNed"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10sp"
+                        android:layout_marginRight="5sp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#E8EEF7"
+                        android:fontFamily="@font/lato_bold"
+                        android:maxLines="2"
+                        android:shadowRadius="0"
+                        android:text="контейнер недоступен"
+                        android:textColor="#356DFA"
+                        android:textSize="14sp"
+                        app:cornerRadius="10sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="0dp"
-                android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/buttonOt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5sp"
+                        android:layout_marginRight="10sp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#E8EEF7"
+                        android:fontFamily="@font/lato_bold"
+                        android:maxLines="2"
+                        android:shadowRadius="0"
+                        android:text="контейнер отсутствует"
+                        android:textColor="#356DFA"
+                        android:textSize="14sp"
+                        app:cornerRadius="10sp" />
+                </LinearLayout>
 
-                <Button
-                    android:id="@+id/buttonKont"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10sp"
-                    android:layout_marginRight="5sp"
-                    android:layout_marginBottom="0dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#E8EEF7"
-                    android:fontFamily="@font/lato_bold"
-                    android:maxLines="2"
-                    android:shadowRadius="0"
-                    android:text="контейнер поврежден"
-                    android:textColor="#356DFA"
-                    android:textSize="14sp"
-                    app:cornerRadius="10sp" />
-
-                <Button
-                    android:id="@+id/buttonMeh"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5sp"
-                    android:layout_marginRight="10sp"
-                    android:layout_marginBottom="0dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#E8EEF7"
-                    android:fontFamily="@font/lato_bold"
-                    android:maxLines="2"
-                    android:shadowRadius="0"
-                    android:text="механизм поврежден"
-                    android:textColor="#356DFA"
-                    android:textSize="14sp"
-                    app:cornerRadius="10sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="0dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/buttonNed"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10sp"
-                    android:layout_marginRight="5sp"
-                    android:layout_marginBottom="0dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#E8EEF7"
-                    android:fontFamily="@font/lato_bold"
-                    android:maxLines="2"
-                    android:shadowRadius="0"
-                    android:text="контейнер недоступен"
-                    android:textColor="#356DFA"
-                    android:textSize="14sp"
-                    app:cornerRadius="10sp" />
-
-                <Button
-                    android:id="@+id/buttonOt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5sp"
-                    android:layout_marginRight="10sp"
-                    android:layout_marginBottom="0dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#E8EEF7"
-                    android:fontFamily="@font/lato_bold"
-                    android:maxLines="2"
-                    android:shadowRadius="0"
-                    android:text="контейнер отсутствует"
-                    android:textColor="#356DFA"
-                    android:textSize="14sp"
-                    app:cornerRadius="10sp" />
             </LinearLayout>
 
         </LinearLayout>
