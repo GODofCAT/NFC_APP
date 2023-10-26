@@ -109,11 +109,30 @@ public class MainActivity extends AppCompatActivity  {
         String dateText = dateFormat.format(date);
 
         String fileName = dateText+".txt";
+
         String documentsPath = System.getenv("EXTERNAL_STORAGE") + "/Documents/Dezcenter_Logs";
         File directory = new File(documentsPath);
         if (!directory.exists()) {
             directory.mkdirs();
         }
+
+        LocalStorage.fragments fragment = (LocalStorage.fragments) LocalStorage.storage.get("current fragment");
+        switch (fragment) {
+            case NfcFragment:
+                documentsPath = System.getenv("EXTERNAL_STORAGE") + "/Documents/Dezcenter_Logs/Deratization_Logs";
+                break;
+            case DezinsecFragment:
+                documentsPath = System.getenv("EXTERNAL_STORAGE") + "/Documents/Dezcenter_Logs/Dezinsection_Logs";
+                break;
+            default:
+                return;
+        }
+        directory = new File(documentsPath);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+
+
         File file = new File(directory, fileName);
 
         try {

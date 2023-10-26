@@ -48,7 +48,7 @@
                     android:src="@drawable/arrow1" />
 
                 <Spinner
-                    android:id="@+id/spinnerWarehouses"
+                    android:id="@+id/spinnerWarehousesDezinsec"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
@@ -117,7 +117,7 @@
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/editTextControllNum"
+                    android:id="@+id/editTextControllNumDezinsec"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20sp"

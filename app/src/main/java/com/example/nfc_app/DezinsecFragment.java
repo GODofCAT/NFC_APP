@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,12 +62,15 @@ public class DezinsecFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        editTextControllNum = view.findViewById(R.id.editTextControllNum);
+        editTextControllNum = view.findViewById(R.id.editTextControllNumDezinsec);
         editTextInsectCount = view.findViewById(R.id.editTextInsectCount);
+
+        editTextInsectCount.setBackgroundResource(R.drawable.round_shape);
+        editTextControllNum.setBackgroundResource(R.drawable.round_shape);
 
         textViewTagDezinsec = view.findViewById(R.id.textViewTag);
 
-        spinnerWarehouses = view.findViewById(R.id.spinnerWarehouses);
+        spinnerWarehouses = view.findViewById(R.id.spinnerWarehousesDezinsec);
         ArrayAdapter<String> adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, LocalStorage.warehouses);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerWarehouses.setAdapter(adapter);
@@ -86,6 +90,9 @@ public class DezinsecFragment extends Fragment {
         };
         spinnerWarehouses.setOnItemSelectedListener(itemSelectedListener);
 
+        buttonInsectNotFound = view.findViewById(R.id.buttonInsectNotFound);
+        buttonInsectFound = view.findViewById(R.id.buttonInsectFound);
+
         buttonInsectFound.setOnClickListener(buttonInsectFoundOnClick);
         buttonInsectNotFound.setOnClickListener(buttonInsectNotFoundOnClick);
 
@@ -96,7 +103,7 @@ public class DezinsecFragment extends Fragment {
     View.OnClickListener buttonInsectFoundOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if (editTextInsectCount.getText() == null){
+            if (editTextInsectCount.getText().toString().isEmpty()){
                 ((MainActivity)getActivity()).writeTag("`нд`", editTextControllNum.getText().toString(), selection);
             }
             else{
