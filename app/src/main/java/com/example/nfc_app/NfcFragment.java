@@ -18,11 +18,6 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link NfcFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class NfcFragment extends Fragment {
     TextView textViewTag;
     Button buttonPlus;
@@ -47,7 +42,6 @@ public class NfcFragment extends Fragment {
 
     public static NfcFragment newInstance() {
         NfcFragment fragment = new NfcFragment();
-
         return fragment;
     }
 

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DezinsecFragment">
+    tools:context=".FerMonFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,11 +21,11 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30sp"
+                android:layout_marginTop="20sp"
                 android:layout_marginBottom="10sp"
                 android:layout_weight="1"
                 android:fontFamily="@font/lato_bold"
-                android:text="ДЕЗИНСЕКЦИЯ"
+                android:text="ФЕРОМОННЫЙ МОНИТОРИНГ"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="40sp" />
@@ -48,7 +47,7 @@
                     android:src="@drawable/arrow1" />
 
                 <Spinner
-                    android:id="@+id/spinnerWarehousesDezinsec"
+                    android:id="@+id/spinnerWarehouses"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
@@ -85,7 +84,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
             android:gravity="bottom"
             android:orientation="vertical">
 
@@ -118,7 +116,7 @@
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/editTextControllNumDezinsec"
+                    android:id="@+id/editTextControllNumFerMon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20sp"
@@ -134,87 +132,83 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/buttonInsectNotFound"
+                android:id="@+id/buttonDolgonos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp"
-                android:backgroundTint="#E8EEF7"
-                android:text="НАСЕКОМЫХ НЕ ОБНАРУЖЕНО"
-                android:textColor="#356DFA"
-                android:textSize="24sp"
-                app:cornerRadius="10dp" />
+                android:text="Button" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30sp"
+                android:layout_marginBottom="40sp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="318dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/lato"
-                    android:text="Количество синантр. насекомых"
+                    android:text="Номер точки контроля"
                     android:textAlignment="center"
                     android:textColor="#356DFA"
-                    android:textSize="17sp" />
+                    android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/editTextInsectCount"
+                    android:id="@+id/editTextDolgonosCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20sp"
                     android:layout_weight="1"
                     android:backgroundTint="#E8EEF7"
                     android:ems="10"
-                    android:inputType="text" />
+                    android:inputType="textPersonName"
+                    android:shadowColor="#000000"
+                    android:textAlignment="center"
+                    android:textColor="#356DFA"
+                    android:textColorHint="#356DFA" />
 
             </LinearLayout>
 
             <Button
-                android:id="@+id/buttonInsectFound"
+                android:id="@+id/buttonHrusch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="40dp"
-                android:backgroundTint="#E8EEF7"
-                android:text="ОБНАРУЖЕНЫ ЦЕЛЕВЫЕ НАСЕКОМЫЕ"
-                android:textColor="#356DFA"
-                android:textSize="24sp"
-                app:cornerRadius="10dp" />
+                android:text="Button" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:foregroundGravity="bottom"
-                android:gravity="bottom"
+                android:layout_marginBottom="40sp"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="77dp"
-                    android:layout_height="35dp"
-                    android:layout_weight="1"
-                    android:scaleType="centerInside"
-                    tools:srcCompat="@drawable/load" />
-
                 <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:id="@+id/textView4"
+                    android:layout_width="318dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="@font/lato_bold"
-                    android:gravity="center"
-                    android:text="ДЕЗЦЕНТРБРЯНСК © | 2023"
+                    android:fontFamily="@font/lato"
+                    android:text="Номер точки контроля"
                     android:textAlignment="center"
-                    android:textColor="#356DFA" />
+                    android:textColor="#356DFA"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/editTextControllHruschCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20sp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#E8EEF7"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:shadowColor="#000000"
+                    android:textAlignment="center"
+                    android:textColor="#356DFA"
+                    android:textColorHint="#356DFA" />
+
             </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>

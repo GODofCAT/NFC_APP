@@ -48,7 +48,7 @@
                     android:src="@drawable/arrow1" />
 
                 <Spinner
-                    android:id="@+id/spinnerWarehouses"
+                    android:id="@+id/spinnerWarehousesDezinsec"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
