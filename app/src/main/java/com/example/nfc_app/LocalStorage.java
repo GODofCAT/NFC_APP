@@ -9,7 +9,8 @@ public class LocalStorage {
     public enum fragments {
       MainFragment,
       NfcFragment,
-      DezinsecFragment
+      DezinsecFragment,
+      FerMonFragment
     }
 
     static public String[] warehouses = {
@@ -56,6 +57,15 @@ public class LocalStorage {
             "БЦ8_ББ",
             "БЦ9_ББ",
             "Вет_аптека_ББ",
+            "реп.Пушкино_МК",
+            "отк.Сосница_МК",
+            "ЗЦ_Борисовский_МК",
+            "ЗЦ_Сенное_МК",
+            "ЗЦ_Зайцевский_МК",
+            "ЗЦ_Подывотье_МК",
+            "Хр.Подлесные_Новоселки_МК",
+            "МТР_Добрунь_МК",
+            "Добрунь_2_МК",
             "ЗЦ_Негино_МК",
             "ЗЦ_Полевые_Новоселки_МК",
             "ЗЦ_Алешковичи_МК",

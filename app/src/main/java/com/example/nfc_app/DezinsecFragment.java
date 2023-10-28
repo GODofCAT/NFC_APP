@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +24,7 @@ import android.widget.TextView;
  * create an instance of this fragment.
  */
 public class DezinsecFragment extends Fragment {
-    TextView textViewTagDezinsec;
+    TextView textViewTag;
 
     EditText editTextInsectCount;
     EditText editTextControllNum;
@@ -68,7 +67,7 @@ public class DezinsecFragment extends Fragment {
         editTextInsectCount.setBackgroundResource(R.drawable.round_shape);
         editTextControllNum.setBackgroundResource(R.drawable.round_shape);
 
-        textViewTagDezinsec = view.findViewById(R.id.textViewTag);
+        textViewTag = view.findViewById(R.id.textViewTag);
 
         spinnerWarehouses = view.findViewById(R.id.spinnerWarehousesDezinsec);
         ArrayAdapter<String> adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, LocalStorage.warehouses);

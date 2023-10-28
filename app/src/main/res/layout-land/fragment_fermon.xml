@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FerMonFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#1B3065"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:layout_marginBottom="10sp"
+                android:layout_weight="1"
+                android:fontFamily="@font/lato_bold"
+                android:text="ФЕРОМОННЫЙ МОНИТОРИНГ"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="34sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/imageButtonBack"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="108dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/arrow1" />
+
+                <Spinner
+                    android:id="@+id/spinnerWarehouses"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50sp"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginRight="50sp"
+                    android:layout_marginBottom="10sp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#FFFFFF"
+                    android:fontFamily="@font/lato_bold"
+                    android:foregroundGravity="center_vertical"
+                    android:gravity="center"
+                    android:persistentDrawingCache="scrolling"
+                    android:scrollbarSize="30dp"
+                    android:scrollbarStyle="insideInset"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:layout_marginBottom="15sp"
+            android:fontFamily="@font/lato"
+            android:text="Информация на метке"
+            android:textAlignment="center"
+            android:textColor="#356DFA"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewTag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15sp"
+                android:hint="_________________"
+                android:textAlignment="center"
+                android:textColor="#356DFA"
+                android:textColorHint="#356DFA"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0sp"
+                    android:layout_marginRight="0sp"
+                    android:layout_marginBottom="0sp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/lato"
+                        android:text="Номер точки контроля"
+                        android:textAlignment="center"
+                        android:textColor="#356DFA"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/editTextControllHruschCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="#E8EEF7"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:shadowColor="#000000"
+                        android:textAlignment="center"
+                        android:textColor="#356DFA"
+                        android:textColorHint="#356DFA" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0sp"
+                    android:layout_marginRight="0sp"
+                    android:layout_marginBottom="0sp"
+                    android:layout_weight="1"
+                    android:gravity="center|center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/lato"
+                        android:text="Номер точки контроля"
+                        android:textAlignment="center"
+                        android:textColor="#356DFA"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/editTextDolgonosCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="#E8EEF7"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:shadowColor="#000000"
+                        android:textAlignment="center"
+                        android:textColor="#356DFA"
+                        android:textColorHint="#356DFA" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0sp"
+                    android:layout_marginRight="0sp"
+                    android:layout_marginBottom="0sp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/lato"
+                        android:text="Номер точки контроля"
+                        android:textAlignment="center"
+                        android:textColor="#356DFA"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/editTextControllNumFerMon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="#E8EEF7"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:shadowColor="#000000"
+                        android:textAlignment="center"
+                        android:textColor="#356DFA"
+                        android:textColorHint="#356DFA" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonDolgonos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginRight="10sp"
+                    android:layout_marginBottom="5sp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#E8EEF7"
+                    android:lines="2"
+                    android:maxLines="2"
+                    android:text="амбарный долгоносик"
+                    android:textColor="#356DFA"
+                    android:textSize="20sp"
+                    app:cornerRadius="10sp" />
+
+                <Button
+                    android:id="@+id/buttonHrusch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginRight="10sp"
+                    android:layout_marginBottom="5sp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#E8EEF7"
+                    android:lines="2"
+                    android:maxLines="2"
+                    android:text="мучной хрущак"
+                    android:textColor="#356DFA"
+                    android:textSize="20sp"
+                    app:cornerRadius="10sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

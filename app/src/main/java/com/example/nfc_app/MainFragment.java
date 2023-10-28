@@ -19,6 +19,7 @@ public class MainFragment extends Fragment {
 
     Button buttonDeratization;
     Button buttonDezinsect;
+    Button buttonFerMon;
 
     public static MainFragment newInstance(String param1, String param2) {
         MainFragment fragment = new MainFragment();
@@ -46,7 +47,25 @@ public class MainFragment extends Fragment {
 
         buttonDezinsect = view.findViewById(R.id.buttonDezinsect);
         buttonDezinsect.setOnClickListener(buttonDezinsectOnClick);
+
+        buttonFerMon = view.findViewById(R.id.buttonFerMon);
+        buttonFerMon.setOnClickListener(buttonFerMonOnClick);
     }
+
+    View.OnClickListener buttonFerMonOnClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                LocalStorage.storage.replace("current fragment", LocalStorage.fragments.FerMonFragment);
+            }
+
+            getActivity().setTheme(R.style.Theme_NFC_APP);
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.frameLayout, (FerMonFragment)LocalStorage.storage.get("ferMonFragment"));
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
+    };
 
     View.OnClickListener buttonDezinsectOnClick = new View.OnClickListener() {
         @Override

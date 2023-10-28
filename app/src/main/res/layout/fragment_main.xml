@@ -21,14 +21,15 @@
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5sp"
                 android:layout_marginTop="20sp"
+                android:layout_marginRight="5sp"
                 android:layout_marginBottom="20sp"
                 android:fontFamily="@font/lato_bold"
-                android:text="РЕГИОНАЛЬНЫЙ
-                ДЕЗ КОНТРОЛЬ"
+                android:text="РЕГИОНАЛЬНАЯ СИСТЕМА ДЕЗ КОНТРОЛЯ"
                 android:textAlignment="center"
                 android:textColor="#356DFA"
-                android:textSize="34sp" />
+                android:textSize="30sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -53,6 +54,7 @@
                     android:layout_marginBottom="30sp"
                     android:backgroundTint="#E8EEF7"
                     android:fontFamily="@font/lato_bold"
+                    android:lines="2"
                     android:text="Дератизация"
                     android:textColor="#356DFA"
                     android:textSize="24sp" />
@@ -66,12 +68,13 @@
                     android:layout_marginBottom="30sp"
                     android:backgroundTint="#E8EEF7"
                     android:fontFamily="@font/lato_bold"
+                    android:lines="2"
                     android:text="Дезинсекция"
                     android:textColor="#356DFA"
                     android:textSize="24sp" />
 
                 <Button
-                    android:id="@+id/button5"
+                    android:id="@+id/buttonFerMon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30sp"
@@ -79,6 +82,7 @@
                     android:layout_marginBottom="30sp"
                     android:backgroundTint="#E8EEF7"
                     android:fontFamily="@font/lato_bold"
+                    android:lines="2"
                     android:text="Феромонный мониторинг"
                     android:textColor="#356DFA"
                     android:textSize="24sp" />

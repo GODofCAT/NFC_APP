@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -30,7 +31,7 @@ public class FerMonFragment extends Fragment {
 
     Button buttonHrusch;
     Button buttonDolgonos;
-    Button buttonBack;
+    ImageButton buttonBack;
 
     public FerMonFragment() {
         // Required empty public constructor
@@ -58,6 +59,14 @@ public class FerMonFragment extends Fragment {
 
         textViewTag = view.findViewById(R.id.textViewTag);
 
+        editTextControllNumFerMon = view.findViewById(R.id.editTextControllNumFerMon);
+        editTextDolgonosCount = view.findViewById(R.id.editTextDolgonosCount);
+        editTextControllHruschCount = view.findViewById(R.id.editTextControllHruschCount);
+
+        editTextControllNumFerMon.setBackgroundResource(R.drawable.round_shape);
+        editTextDolgonosCount.setBackgroundResource(R.drawable.round_shape);
+        editTextControllHruschCount.setBackgroundResource(R.drawable.round_shape);
+
         spinnerWarehouses = view.findViewById(R.id.spinnerWarehouses);
         ArrayAdapter<String> adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, LocalStorage.warehouses);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -81,6 +90,9 @@ public class FerMonFragment extends Fragment {
         buttonDolgonos = view.findViewById(R.id.buttonDolgonos);
         buttonHrusch = view.findViewById(R.id.buttonHrusch);
 
+        buttonDolgonos.setOnClickListener(buttonDolgonosOnClick);
+        buttonHrusch.setOnClickListener(buttonHruschOnClick);
+
         buttonBack = view.findViewById(R.id.imageButtonBack);
         buttonBack.setOnClickListener(buttonBackOnClick);
     }
@@ -94,6 +106,33 @@ public class FerMonFragment extends Fragment {
 
             getActivity().setTheme(R.style.Theme_MainFragment);
             getActivity().getSupportFragmentManager().popBackStack();
+        }
+    };
+
+    View.OnClickListener buttonDolgonosOnClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            String msg;
+
+            if (editTextDolgonosCount.getText().toString().isEmpty()){
+                msg = "`АД-0`";
+            }
+            else{
+                msg = "`АД-"+editTextDolgonosCount.getText().toString()+"`";
+            }
+            ((MainActivity)getActivity()).writeTag(msg, editTextControllNumFerMon.getText().toString(), selection);
+        }
+    };
+
+    View.OnClickListener buttonHruschOnClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (editTextControllHruschCount.getText().toString().isEmpty()){
+                ((MainActivity)getActivity()).writeTag("`МХ-0`", editTextControllHruschCount.getText().toString(), selection);
+            }
+            else{
+                ((MainActivity)getActivity()).writeTag("`МХ-"+editTextControllHruschCount.getText()+"`", editTextControllNumFerMon.getText().toString(), selection);
+            }
         }
     };
 }

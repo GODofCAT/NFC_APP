@@ -1,7 +1,6 @@
 package com.example.nfc_app;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.app.PendingIntent;
@@ -22,12 +21,10 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -37,6 +34,7 @@ public class MainActivity extends AppCompatActivity  {
 
     private MainFragment mainFragment;
     private NfcFragment nfcFragment;
+    private FerMonFragment ferMonFragment;
 
     private DezinsecFragment dezinsecFragment;
 
@@ -67,6 +65,9 @@ public class MainActivity extends AppCompatActivity  {
 
         dezinsecFragment = new DezinsecFragment();
         LocalStorage.storage.put("dezinsecFragment", dezinsecFragment);
+
+        ferMonFragment = new FerMonFragment();
+        LocalStorage.storage.put("ferMonFragment",ferMonFragment);
 
         StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder(StrictMode.getVmPolicy())
                 .detectLeakedClosableObjects()
@@ -124,6 +125,9 @@ public class MainActivity extends AppCompatActivity  {
             case DezinsecFragment:
                 documentsPath = System.getenv("EXTERNAL_STORAGE") + "/Documents/Dezcenter_Logs/Dezinsection_Logs";
                 break;
+            case FerMonFragment:
+                documentsPath = System.getenv("EXTERNAL_STORAGE") + "/Documents/Dezcenter_Logs/FerMon_Logs";
+                    break;
             default:
                 return;
         }
@@ -213,7 +217,10 @@ public class MainActivity extends AppCompatActivity  {
                 viewTag = nfcFragment.textViewTag;
                 break;
             case DezinsecFragment:
-                viewTag = dezinsecFragment.textViewTagDezinsec;
+                viewTag = dezinsecFragment.textViewTag;
+                break;
+            case FerMonFragment:
+                viewTag = ferMonFragment.textViewTag;
                 break;
             default:
                 return;
