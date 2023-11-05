@@ -111,42 +111,6 @@
                     android:layout_marginRight="0sp"
                     android:layout_marginBottom="0sp"
                     android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textView4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/lato"
-                        android:text="Номер точки контроля"
-                        android:textAlignment="center"
-                        android:textColor="#356DFA"
-                        android:textSize="18sp" />
-
-                    <EditText
-                        android:id="@+id/editTextControllHruschCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:backgroundTint="#E8EEF7"
-                        android:ems="10"
-                        android:inputType="textPersonName"
-                        android:shadowColor="#000000"
-                        android:textAlignment="center"
-                        android:textColor="#356DFA"
-                        android:textColorHint="#356DFA" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="0sp"
-                    android:layout_marginRight="0sp"
-                    android:layout_marginBottom="0sp"
-                    android:layout_weight="1"
                     android:gravity="center|center_horizontal"
                     android:orientation="vertical">
 
@@ -156,7 +120,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/lato"
-                        android:text="Номер точки контроля"
+                        android:text="количество особей"
                         android:textAlignment="center"
                         android:textColor="#356DFA"
                         android:textSize="18sp" />
@@ -211,6 +175,43 @@
                         android:textColorHint="#356DFA" />
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0sp"
+                    android:layout_marginRight="0sp"
+                    android:layout_marginBottom="0sp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/lato"
+                        android:text="количество особей"
+                        android:textAlignment="center"
+                        android:textColor="#356DFA"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/editTextControllHruschCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="#E8EEF7"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:shadowColor="#000000"
+                        android:textAlignment="center"
+                        android:textColor="#356DFA"
+                        android:textColorHint="#356DFA" />
+
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout

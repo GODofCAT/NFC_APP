@@ -26,7 +26,7 @@
                 android:layout_marginTop="20sp"
                 android:layout_marginBottom="0dp"
                 android:fontFamily="@font/lato_bold"
-                android:text="РЕГИОНАЛЬНЫЙ ДЕЗ КОНТРОЛЬ"
+                android:text="РЕГИОНАЛЬНАЯ СИСТЕМА ДЕЗ КОНТРОЛЯ"
                 android:textAlignment="center"
                 android:textColor="#356DFA"
                 android:textSize="34sp" />

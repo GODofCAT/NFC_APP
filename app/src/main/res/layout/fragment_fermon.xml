@@ -162,7 +162,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/lato"
-                    android:text="Номер точки контроля"
+                    android:text="количество особей"
                     android:textAlignment="center"
                     android:textColor="#356DFA"
                     android:textSize="18sp" />
@@ -212,7 +212,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/lato"
-                    android:text="Номер точки контроля"
+                    android:text="количество особей"
                     android:textAlignment="center"
                     android:textColor="#356DFA"
                     android:textSize="18sp" />
