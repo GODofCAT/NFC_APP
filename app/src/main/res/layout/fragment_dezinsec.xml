@@ -33,15 +33,14 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <ImageButton
                     android:id="@+id/imageButtonBack"
                     style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="108dp"
-                    android:layout_height="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:scaleType="fitXY"
@@ -49,8 +48,8 @@
 
                 <Spinner
                     android:id="@+id/spinnerWarehousesDezinsec"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="50sp"
                     android:layout_marginTop="10sp"

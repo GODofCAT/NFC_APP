@@ -85,6 +85,19 @@
                     android:textColor="#356DFA"
                     android:textSize="24sp" />
 
+                <Button
+                    android:id="@+id/buttonFerMon2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30sp"
+                    android:layout_marginRight="30sp"
+                    android:layout_marginBottom="0dp"
+                    android:backgroundTint="#E8EEF7"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="выгрузить логи"
+                    android:textColor="#356DFA"
+                    android:textSize="24sp" />
+
             </LinearLayout>
 
             <LinearLayout

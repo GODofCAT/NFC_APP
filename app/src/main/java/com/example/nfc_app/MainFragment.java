@@ -1,7 +1,5 @@
 package com.example.nfc_app;
 
-import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -91,7 +89,7 @@ public class MainFragment extends Fragment {
 
             getActivity().setTheme(R.style.Theme_NFC_APP);
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.frameLayout, (NfcFragment)LocalStorage.storage.get("nfcFragment"));
+            transaction.replace(R.id.frameLayout, (DeratizationFragment)LocalStorage.storage.get("nfcFragment"));
             transaction.addToBackStack(null);
             transaction.commit();
         }

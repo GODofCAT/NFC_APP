@@ -18,7 +18,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class NfcFragment extends Fragment {
+public class DeratizationFragment extends Fragment {
     TextView textViewTag;
     Button buttonPlus;
     Button button50;
@@ -40,8 +40,8 @@ public class NfcFragment extends Fragment {
 
 
 
-    public static NfcFragment newInstance() {
-        NfcFragment fragment = new NfcFragment();
+    public static DeratizationFragment newInstance() {
+        DeratizationFragment fragment = new DeratizationFragment();
         return fragment;
     }
 

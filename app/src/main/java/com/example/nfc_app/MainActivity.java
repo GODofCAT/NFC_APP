@@ -33,7 +33,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity  {
 
     private MainFragment mainFragment;
-    private NfcFragment nfcFragment;
+    private DeratizationFragment nfcFragment;
     private FerMonFragment ferMonFragment;
 
     private DezinsecFragment dezinsecFragment;
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity  {
         getSupportActionBar().hide();
         setTheme(R.style.Theme_MainFragment);
 
-        nfcFragment = new NfcFragment();
+        nfcFragment = new DeratizationFragment();
         LocalStorage.storage.put("nfcFragment", nfcFragment);
 
         dezinsecFragment = new DezinsecFragment();
@@ -289,21 +289,21 @@ public class MainActivity extends AppCompatActivity  {
     @Override
     public void onPause() {
         super.onPause();
-        WriteModeOff();
+        writeModeOff();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        WriteModeOn();
+        writeModeOn();
     }
 
-    private void WriteModeOn(){
+    private void writeModeOn(){
         writeMode = true;
         adapter.enableForegroundDispatch(this,pendingIntent,writingTagFilter, null);
     }
 
-    private void WriteModeOff(){
+    private void writeModeOff(){
         writeMode = false;
         adapter.disableForegroundDispatch(this);
     }
