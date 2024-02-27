@@ -1,4 +1,4 @@
-package com.example.nfc_app;
+package com.example.nfc_app.util;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,6 +7,7 @@ public class LocalStorage {
     static public Map<String, Object> storage = new HashMap<>();
 
     public enum fragments {
+      AuthorizeFragment,
       MainFragment,
       NfcFragment,
       DezinsecFragment,

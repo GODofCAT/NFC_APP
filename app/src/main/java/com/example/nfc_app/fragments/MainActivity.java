@@ -1,4 +1,4 @@
-package com.example.nfc_app;
+package com.example.nfc_app.fragments;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,6 +21,9 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.nfc_app.R;
+import com.example.nfc_app.util.LocalStorage;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -35,8 +38,8 @@ public class MainActivity extends AppCompatActivity  {
     private MainFragment mainFragment;
     private DeratizationFragment nfcFragment;
     private FerMonFragment ferMonFragment;
-
     private DezinsecFragment dezinsecFragment;
+    private AuthorizeFragment authorizeFragment;
 
     public static final String ErrorDetected = "NFC метка не найдена";
     public static final String WriteSuccess = "Запись прошла успешно!";
@@ -69,6 +72,9 @@ public class MainActivity extends AppCompatActivity  {
         ferMonFragment = new FerMonFragment();
         LocalStorage.storage.put("ferMonFragment",ferMonFragment);
 
+        mainFragment = new MainFragment();
+        LocalStorage.storage.put("mainFragment", mainFragment);
+
         StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder(StrictMode.getVmPolicy())
                 .detectLeakedClosableObjects()
                 .build());
@@ -97,10 +103,11 @@ public class MainActivity extends AppCompatActivity  {
         tagDetected.addCategory(Intent.CATEGORY_DEFAULT);
         writingTagFilter = new IntentFilter[]{tagDetected};
 
-        LocalStorage.storage.put("current fragment", LocalStorage.fragments.MainFragment);
-        mainFragment = new MainFragment();
+        LocalStorage.storage.put("current fragment", LocalStorage.fragments.AuthorizeFragment);
+        authorizeFragment = new AuthorizeFragment();
+
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frameLayout, mainFragment)
+                .replace(R.id.frameLayout, authorizeFragment)
                 .commit();
     }
 

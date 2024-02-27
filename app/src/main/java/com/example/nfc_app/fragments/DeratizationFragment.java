@@ -1,4 +1,4 @@
-package com.example.nfc_app;
+package com.example.nfc_app.fragments;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -17,6 +17,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.example.nfc_app.R;
+import com.example.nfc_app.util.LocalStorage;
 
 public class DeratizationFragment extends Fragment {
     TextView textViewTag;
