@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.example.nfc_app.R;
 import com.example.nfc_app.util.LocalStorage;
 import com.example.nfc_app.util.dto.AuthorizeRequestDto;
 import com.example.nfc_app.util.dto.AuthorizeResponseDto;
+import com.example.nfc_app.util.dto.FacilityResponseDto;
 import com.example.nfc_app.util.requsests.NetworkService;
 
 import retrofit2.Call;
@@ -57,35 +59,70 @@ public class AuthorizeFragment extends Fragment {
         editTextPassword = view.findViewById(R.id.editTextPassword);
         buttonAuthorize = view.findViewById(R.id.buttonAuthorize);
 
-        AuthorizeRequestDto requestDto = new AuthorizeRequestDto(editTextLogin.getText().toString(),editTextPassword.getText().toString());
 
-        NetworkService.getInstance().getAuthorizeInterface().authorizeMobile(requestDto).enqueue(new Callback<AuthorizeResponseDto>() {
-            @Override
-            public void onResponse(Call<AuthorizeResponseDto> call, Response<AuthorizeResponseDto> response) {
+        buttonAuthorize.setOnClickListener(buttonAuthorizeOnClick);
 
-                switch (response.body().getStatus()) {
-                    case 200:
-                        LocalStorage.storage.put("token", response.body().getContent().getToken());
-                        LocalStorage.storage.put("companyId", response.body().getContent().getCompanyId());
 
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                            LocalStorage.storage.replace("current fragment", LocalStorage.fragments.MainFragment);
+    }
+
+    View.OnClickListener buttonAuthorizeOnClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+                AuthorizeRequestDto requestDto = new AuthorizeRequestDto(editTextLogin.getText().toString(), editTextPassword.getText().toString());
+                NetworkService.getInstance().getAuthorizeInterface().authorizeMobile(requestDto).enqueue(new Callback<AuthorizeResponseDto>() {
+                    @Override
+                    public void onResponse(Call<AuthorizeResponseDto> call, Response<AuthorizeResponseDto> response) {
+
+                        switch (response.body().getStatus()) {
+                            case 200:
+                                LocalStorage.storage.put("token", response.body().getToken());
+                                LocalStorage.storage.put("companyId", response.body().getCompanyId());
+                                getFacilities(view);
+
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                    LocalStorage.storage.replace("current fragment", LocalStorage.fragments.MainFragment);
+                                }
+
+                                getActivity().setTheme(R.style.Theme_MainFragment);
+                                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                                transaction.replace(R.id.frameLayout, (MainFragment)LocalStorage.storage.get("mainFragment"));
+                                transaction.commit();
+                                break;
+                            case 401:
+                                Toast.makeText(view.getContext(), "неправильный логин или пароль", Toast.LENGTH_LONG).show();
+                                break;
                         }
+                    }
 
-                        getActivity().setTheme(R.style.Theme_MainFragment);
-                        getActivity().getSupportFragmentManager().popBackStack();
+                    @Override
+                    public void onFailure(Call<AuthorizeResponseDto> call, Throwable t) {
+                        t.printStackTrace();
+                        Toast.makeText(view.getContext(), "хуйня", Toast.LENGTH_LONG).show();
+                    }
+                });
+        }
+    };
+
+    private void getFacilities(View view){
+        NetworkService.getInstance().getFacilityInterface().getFacilityesByCompanyId(LocalStorage.storage.get("token").toString(),(Integer)LocalStorage.storage.get("companyId")).enqueue(new Callback<FacilityResponseDto>() {
+            @Override
+            public void onResponse(Call<FacilityResponseDto> call, Response<FacilityResponseDto> response) {
+                switch (response.body().getStatus()){
+                    case 200:
+                        LocalStorage.facilityContainers = response.body().getFacilities();
                         break;
                     case 401:
-
+                        Toast.makeText(view.getContext(), "api key expired", Toast.LENGTH_LONG).show();
                         break;
                 }
             }
 
             @Override
-            public void onFailure(Call<AuthorizeResponseDto> call, Throwable t) {
-                t.printStackTrace();
+            public void onFailure(Call<FacilityResponseDto> call, Throwable t) {
+
             }
         });
-
     }
+
+
 }

@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.example.nfc_app.R;
 import com.example.nfc_app.util.LocalStorage;
+import com.example.nfc_app.util.dto.FacilityContainer;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,6 +34,7 @@ public class DezinsecFragment extends Fragment {
     EditText editTextControllNum;
     Spinner spinnerWarehouses;
     String selection;
+    int selectionId;
     Button buttonInsectNotFound;
     Button buttonInsectFound;
     ImageButton buttonBack;
@@ -73,7 +75,7 @@ public class DezinsecFragment extends Fragment {
         textViewTag = view.findViewById(R.id.textViewTag);
 
         spinnerWarehouses = view.findViewById(R.id.spinnerWarehousesDezinsec);
-        ArrayAdapter<String> adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, LocalStorage.warehouses);
+        ArrayAdapter<FacilityContainer> adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, LocalStorage.facilityContainers);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerWarehouses.setAdapter(adapter);
         spinnerWarehouses.setBackgroundResource(R.drawable.round_shape);
@@ -82,8 +84,9 @@ public class DezinsecFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                String item = (String)parent.getItemAtPosition(position);
-                selection = item;
+                FacilityContainer  item = (FacilityContainer) parent.getItemAtPosition(position);
+                selection = item.getName();
+                selectionId = item.getId();
             }
 
             @Override
@@ -106,10 +109,16 @@ public class DezinsecFragment extends Fragment {
         @Override
         public void onClick(View v) {
             if (editTextInsectCount.getText().toString().isEmpty()){
-                ((MainActivity)getActivity()).writeTag("`нд`", editTextControllNum.getText().toString(), selection);
+                ((MainActivity)getActivity()).writeTag("`нд`", editTextControllNum.getText().toString(), selection);String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
+                ((MainActivity)getActivity()).addNewLogToDb(Integer.valueOf(editTextControllNum.getText().toString()),"`нд`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+
+
             }
             else{
                 ((MainActivity)getActivity()).writeTag("`"+editTextInsectCount.getText()+"`", editTextControllNum.getText().toString(), selection);
+                String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
+                ((MainActivity)getActivity()).addNewLogToDb(Integer.valueOf(editTextControllNum.getText().toString()),"`Погрыз`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+
             }
         }
     };
@@ -118,6 +127,9 @@ public class DezinsecFragment extends Fragment {
         @Override
         public void onClick(View v) {
             ((MainActivity)getActivity()).writeTag("`+`", editTextControllNum.getText().toString(), selection);
+            String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
+            ((MainActivity)getActivity()).addNewLogToDb(Integer.valueOf(editTextControllNum.getText().toString()),"`+`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+
         }
     };
 

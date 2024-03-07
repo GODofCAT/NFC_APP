@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.example.nfc_app.R;
 import com.example.nfc_app.util.LocalStorage;
+import com.example.nfc_app.util.dto.FacilityContainer;
 
 public class DeratizationFragment extends Fragment {
     TextView textViewTag;
@@ -37,6 +38,7 @@ public class DeratizationFragment extends Fragment {
     Spinner spinnerWarehouses;
 
     String selection;
+    int selectionId;
 
     ImageButton buttonBack;
 
@@ -73,7 +75,7 @@ public class DeratizationFragment extends Fragment {
 
 
         spinnerWarehouses = view.findViewById(R.id.spinnerWarehouses);
-        ArrayAdapter<String> adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, LocalStorage.warehouses);
+        ArrayAdapter<FacilityContainer> adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, LocalStorage.facilityContainers);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerWarehouses.setAdapter(adapter);
         spinnerWarehouses.setBackgroundResource(R.drawable.round_shape);
@@ -82,8 +84,9 @@ public class DeratizationFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                String item = (String)parent.getItemAtPosition(position);
-                selection = item;
+                FacilityContainer  item = (FacilityContainer) parent.getItemAtPosition(position);
+                selection = item.getName();
+                selectionId = item.getId();
             }
 
             @Override
@@ -131,12 +134,18 @@ public class DeratizationFragment extends Fragment {
         @Override
         public void onClick(View v) {
             ((MainActivity)getActivity()).writeTag("`Погрыз`", editTextControllNum.getText().toString(), selection);
+            String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
+            ((MainActivity)getActivity()).addNewLogToDb(Integer.valueOf(editTextControllNum.getText().toString()),"`Погрыз`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+
         }
     };
     View.OnClickListener buttonGrOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             ((MainActivity)getActivity()).writeTag("`Гр`", editTextControllNum.getText().toString(), selection);
+            String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
+            ((MainActivity)getActivity()).addNewLogToDb(Integer.valueOf(editTextControllNum.getText().toString()),"`Гр`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+
         }
     };
 
@@ -144,6 +153,9 @@ public class DeratizationFragment extends Fragment {
         @Override
         public void onClick(View v) {
             ((MainActivity)getActivity()).writeTag("`КонтПовр`", editTextControllNum.getText().toString(), selection);
+            String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
+            ((MainActivity)getActivity()).addNewLogToDb(Integer.valueOf(editTextControllNum.getText().toString()),"`КонтПовр`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+
         }
     };
 
@@ -151,6 +163,9 @@ public class DeratizationFragment extends Fragment {
         @Override
         public void onClick(View v) {
             ((MainActivity)getActivity()).writeTag("`МехПовр`", editTextControllNum.getText().toString(), selection);
+            String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
+            ((MainActivity)getActivity()).addNewLogToDb(Integer.valueOf(editTextControllNum.getText().toString()),"`МехПовр`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+
         }
     };
 
@@ -158,6 +173,9 @@ public class DeratizationFragment extends Fragment {
         @Override
         public void onClick(View v) {
             ((MainActivity)getActivity()).writeTag("`КонтНед`", editTextControllNum.getText().toString(), selection);
+            String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
+            ((MainActivity)getActivity()).addNewLogToDb(Integer.valueOf(editTextControllNum.getText().toString()),"`КонтНед`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+
         }
     };
 
@@ -165,6 +183,9 @@ public class DeratizationFragment extends Fragment {
         @Override
         public void onClick(View v) {
             ((MainActivity)getActivity()).writeTag("`КонтОт`", editTextControllNum.getText().toString(), selection);
+            String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
+            ((MainActivity)getActivity()).addNewLogToDb(Integer.valueOf(editTextControllNum.getText().toString()),"`КонтОт`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+
         }
     };
 
@@ -172,6 +193,9 @@ public class DeratizationFragment extends Fragment {
         @Override
         public void onClick(View v) {
             ((MainActivity)getActivity()).writeTag("`ПрОт`", editTextControllNum.getText().toString(), selection);
+            String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
+            ((MainActivity)getActivity()).addNewLogToDb(Integer.valueOf(editTextControllNum.getText().toString()),"`ПрОт`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+
         }
     };
 
@@ -179,6 +203,9 @@ public class DeratizationFragment extends Fragment {
         @Override
         public void onClick(View v) {
             ((MainActivity)getActivity()).writeTag("`+`", editTextControllNum.getText().toString(), selection);
+            String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
+            ((MainActivity)getActivity()).addNewLogToDb(Integer.valueOf(editTextControllNum.getText().toString()),"`+`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+
         }
     };
 

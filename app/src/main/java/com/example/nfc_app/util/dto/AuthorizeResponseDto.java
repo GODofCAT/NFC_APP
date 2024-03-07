@@ -5,26 +5,27 @@ import com.google.gson.annotations.SerializedName;
 
 public class AuthorizeResponseDto {
     @SerializedName("status")
-    @Expose
     private int status;
 
-    @SerializedName("status")
-    @Expose
-    private String msgType;
+    @SerializedName("token")
+    private String token;
 
-    @SerializedName("content")
-    @Expose
-    private AuthorizeResponseContentDto content;
+    @SerializedName("companyId")
+    private int companyId;
+
+
+    public AuthorizeResponseDto() {
+    }
 
     public int getStatus() {
         return status;
     }
 
-    public String getMsgType() {
-        return msgType;
+    public String getToken() {
+        return token;
     }
 
-    public AuthorizeResponseContentDto getContent() {
-        return content;
+    public int getCompanyId() {
+        return companyId;
     }
 }

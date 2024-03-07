@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.example.nfc_app.R;
 import com.example.nfc_app.util.LocalStorage;
+import com.example.nfc_app.util.dto.FacilityContainer;
 
 
 public class FerMonFragment extends Fragment {
@@ -27,6 +28,7 @@ public class FerMonFragment extends Fragment {
 
     Spinner spinnerWarehouses;
     String selection;
+    int selectionId;
 
     EditText editTextControllNumFerMon;
     EditText editTextDolgonosCount;
@@ -71,7 +73,7 @@ public class FerMonFragment extends Fragment {
         editTextControllHruschCount.setBackgroundResource(R.drawable.round_shape);
 
         spinnerWarehouses = view.findViewById(R.id.spinnerWarehouses);
-        ArrayAdapter<String> adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, LocalStorage.warehouses);
+        ArrayAdapter<FacilityContainer> adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, LocalStorage.facilityContainers);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerWarehouses.setAdapter(adapter);
         spinnerWarehouses.setBackgroundResource(R.drawable.round_shape);
@@ -79,9 +81,9 @@ public class FerMonFragment extends Fragment {
         AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                String item = (String)parent.getItemAtPosition(position);
-                selection = item;
+                FacilityContainer  item = (FacilityContainer) parent.getItemAtPosition(position);
+                selection = item.getName();
+                selectionId = item.getId();
             }
 
             @Override
@@ -132,9 +134,15 @@ public class FerMonFragment extends Fragment {
         public void onClick(View v) {
             if (editTextControllHruschCount.getText().toString().isEmpty()){
                 ((MainActivity)getActivity()).writeTag("`МХ-0`", editTextControllHruschCount.getText().toString(), selection);
+                String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
+                ((MainActivity)getActivity()).addNewLogToDb(Integer.valueOf(editTextControllHruschCount.getText().toString()),"`МХ-0`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+
             }
             else{
                 ((MainActivity)getActivity()).writeTag("`МХ-"+editTextControllHruschCount.getText()+"`", editTextControllNumFerMon.getText().toString(), selection);
+                String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
+                ((MainActivity)getActivity()).addNewLogToDb(Integer.valueOf(editTextControllHruschCount.getText().toString()),"`МХ-"+editTextControllHruschCount.getText()+"`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+
             }
         }
     };

@@ -8,6 +8,6 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface AuthorizeInterface {
-    @POST("/authorize/web-company")
-    public Call<AuthorizeResponseDto> authorizeMobile(@Body AuthorizeRequestDto authorizeRequestDto);
+    @POST("mobile/authorize/web-mobile")
+    Call<AuthorizeResponseDto> authorizeMobile(@Body AuthorizeRequestDto authorizeRequestDto);
 }

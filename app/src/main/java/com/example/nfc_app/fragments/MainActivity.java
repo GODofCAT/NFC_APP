@@ -1,6 +1,7 @@
 package com.example.nfc_app.fragments;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.annotation.SuppressLint;
 import android.app.PendingIntent;
@@ -22,7 +23,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nfc_app.R;
+import com.example.nfc_app.connection.CheckConnection;
+import com.example.nfc_app.db.LogDb;
 import com.example.nfc_app.util.LocalStorage;
+import com.example.nfc_app.util.dto.AddLogRequestDto;
+import com.example.nfc_app.util.dto.LogResponseDto;
+import com.example.nfc_app.util.requsests.NetworkService;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -32,6 +38,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Timer;
+import java.util.UUID;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity  {
 
@@ -40,6 +52,8 @@ public class MainActivity extends AppCompatActivity  {
     private FerMonFragment ferMonFragment;
     private DezinsecFragment dezinsecFragment;
     private AuthorizeFragment authorizeFragment;
+
+    private LogDb db;
 
     public static final String ErrorDetected = "NFC метка не найдена";
     public static final String WriteSuccess = "Запись прошла успешно!";
@@ -62,6 +76,13 @@ public class MainActivity extends AppCompatActivity  {
 
         getSupportActionBar().hide();
         setTheme(R.style.Theme_MainFragment);
+
+        db = Room.databaseBuilder(getApplicationContext(),LogDb.class,"populus-database").allowMainThreadQueries().build();
+        LocalStorage.storage.put("db", db);
+
+        Timer timer = new Timer();
+        final int MILLISECONDS = 10000;
+        timer.schedule(new CheckConnection(this, db), 0, MILLISECONDS);
 
         nfcFragment = new DeratizationFragment();
         LocalStorage.storage.put("nfcFragment", nfcFragment);
@@ -154,6 +175,15 @@ public class MainActivity extends AppCompatActivity  {
         } catch (IOException e) {}
     }
 
+    public void addNewLogToDb(int controlNum, String controlNumStatus, String tagNum, int companyId, int facilityId, int workId){
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+        String dateText = dateFormat.format(date);
+        String uuid = UUID.randomUUID().toString();
+        com.example.nfc_app.db.Log log = new com.example.nfc_app.db.Log(tagNum,dateText,facilityId,controlNum,controlNumStatus,workId,companyId,uuid);
+        db.getLogDao().insert(log);
+    }
+
     private String hexIdToStringId(byte[] hexId){
         String stringId = new String();
         String x;
@@ -197,6 +227,10 @@ public class MainActivity extends AppCompatActivity  {
         }catch (Exception e){
             Toast.makeText(context, ErrorWrite, Toast.LENGTH_LONG).show();
         }
+    }
+
+    public String getCurrentTagId(){
+        return hexIdToStringId(currentTagId).toUpperCase();
     }
 
     private void readFromIntent(Intent intent){
