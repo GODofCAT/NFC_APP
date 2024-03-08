@@ -110,14 +110,14 @@ public class DezinsecFragment extends Fragment {
         public void onClick(View v) {
             if (editTextInsectCount.getText().toString().isEmpty()){
                 ((MainActivity)getActivity()).writeTag("`нд`", editTextControllNum.getText().toString(), selection);String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
-                ((MainActivity)getActivity()).addNewLogToDb(Integer.valueOf(editTextControllNum.getText().toString()),"`нд`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+                ((MainActivity)getActivity()).addNewLogToDb(editTextControllNum.getText().toString(),"`нд`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 2);
 
 
             }
             else{
                 ((MainActivity)getActivity()).writeTag("`"+editTextInsectCount.getText()+"`", editTextControllNum.getText().toString(), selection);
                 String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
-                ((MainActivity)getActivity()).addNewLogToDb(Integer.valueOf(editTextControllNum.getText().toString()),"`Погрыз`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+                ((MainActivity)getActivity()).addNewLogToDb(editTextControllNum.getText().toString(),"`Погрыз`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 2);
 
             }
         }
@@ -128,7 +128,7 @@ public class DezinsecFragment extends Fragment {
         public void onClick(View v) {
             ((MainActivity)getActivity()).writeTag("`+`", editTextControllNum.getText().toString(), selection);
             String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
-            ((MainActivity)getActivity()).addNewLogToDb(Integer.valueOf(editTextControllNum.getText().toString()),"`+`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+            ((MainActivity)getActivity()).addNewLogToDb(editTextControllNum.getText().toString(),"`+`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 2);
 
         }
     };

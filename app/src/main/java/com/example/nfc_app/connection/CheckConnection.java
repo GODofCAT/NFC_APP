@@ -28,31 +28,33 @@ public class CheckConnection extends TimerTask {
     public void run() {
         if(NetworkUtils.isNetworkAvailable(context)){
            List<Log> logs =  db.getLogDao().getLogs();
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                List<AddLogRequestDto> request = logs.stream().map(log -> new AddLogRequestDto(log.getControl_num(), log.getControl_num_status(), log.getDate(), log.getTag_num(), log.getCompany_id(), log.getFacility_id(), log.getWork_id(), log.getUuid())).collect(Collectors.toList());
+           if (!logs.isEmpty()){
+               if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                   List<AddLogRequestDto> request = logs.stream().map(log -> new AddLogRequestDto(log.getControl_num(), log.getControl_num_status(), log.getDate(), log.getTag_num(), log.getCompany_id(), log.getFacility_id(), log.getWork_id(), log.getUuid())).collect(Collectors.toList());
 
-                NetworkService.getInstance().getLogInterface().addNewLog(LocalStorage.storage.get("token").toString(), request).enqueue(new Callback<LogResponseDto>() {
-                    @Override
-                    public void onResponse(Call<LogResponseDto> call, Response<LogResponseDto> response) {
-                        switch (response.body().getStatus()){
-                            case 200:
-                                for(String uuid:response.body().getUuids()){
-                                    if (db.getLogDao().findByUUID(uuid) != null){
-                                        db.getLogDao().deleteByUUID(uuid);
-                                    }
-                                }
-                                break;
-                            case 401:
-                                break;
-                        }
-                    }
+                   NetworkService.getInstance().getLogInterface().addNewLog(LocalStorage.storage.get("token").toString(), request).enqueue(new Callback<LogResponseDto>() {
+                       @Override
+                       public void onResponse(Call<LogResponseDto> call, Response<LogResponseDto> response) {
+                           switch (response.body().getStatus()){
+                               case 200:
+                                   for(String uuid:response.body().getUuids()){
+                                       if (db.getLogDao().findByUUID(uuid) != null){
+                                           db.getLogDao().deleteByUUID(uuid);
+                                       }
+                                   }
+                                   break;
+                               case 401:
+                                   break;
+                           }
+                       }
 
-                    @Override
-                    public void onFailure(Call<LogResponseDto> call, Throwable t) {
-                        t.printStackTrace();
-                    }
-                });
-            }
+                       @Override
+                       public void onFailure(Call<LogResponseDto> call, Throwable t) {
+                           t.printStackTrace();
+                       }
+                   });
+               }
+           }
 
         }else {
 

@@ -1,9 +1,15 @@
 package com.example.nfc_app.db;
 
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+import org.jetbrains.annotations.NotNull;
 
 @Entity
 public class Log {
+    @PrimaryKey(autoGenerate = true)
+    @NotNull
+    int id;
     String tag_num;
     String date;
     int facility_id;
@@ -11,7 +17,6 @@ public class Log {
     String control_num_status;
     int work_id;
     int company_id;
-
     String uuid;
 
     public Log(String tag_num, String date, int facility_id, int control_num, String control_num_status, int work_id, int company_id, String uuid) {

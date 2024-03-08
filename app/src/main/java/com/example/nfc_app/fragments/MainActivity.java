@@ -18,12 +18,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.os.StrictMode;
-import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nfc_app.R;
 import com.example.nfc_app.connection.CheckConnection;
+import com.example.nfc_app.db.Log;
 import com.example.nfc_app.db.LogDb;
 import com.example.nfc_app.util.LocalStorage;
 import com.example.nfc_app.util.dto.AddLogRequestDto;
@@ -37,6 +37,7 @@ import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.UUID;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity  {
     private AuthorizeFragment authorizeFragment;
 
     private LogDb db;
+    private List<Log> logForCheck;
 
     public static final String ErrorDetected = "NFC метка не найдена";
     public static final String WriteSuccess = "Запись прошла успешно!";
@@ -77,7 +79,7 @@ public class MainActivity extends AppCompatActivity  {
         getSupportActionBar().hide();
         setTheme(R.style.Theme_MainFragment);
 
-        db = Room.databaseBuilder(getApplicationContext(),LogDb.class,"populus-database").allowMainThreadQueries().build();
+        db = Room.databaseBuilder(getApplicationContext(),LogDb.class,"populus-database").allowMainThreadQueries().fallbackToDestructiveMigration().build();
         LocalStorage.storage.put("db", db);
 
         Timer timer = new Timer();
@@ -175,13 +177,32 @@ public class MainActivity extends AppCompatActivity  {
         } catch (IOException e) {}
     }
 
-    public void addNewLogToDb(int controlNum, String controlNumStatus, String tagNum, int companyId, int facilityId, int workId){
-        Date date = new Date();
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-        String dateText = dateFormat.format(date);
-        String uuid = UUID.randomUUID().toString();
-        com.example.nfc_app.db.Log log = new com.example.nfc_app.db.Log(tagNum,dateText,facilityId,controlNum,controlNumStatus,workId,companyId,uuid);
-        db.getLogDao().insert(log);
+    public void addNewLogToDb(String controlNum, String controlNumStatus, String tagNum, int companyId, int facilityId, int workId){
+        if (controlNum.isEmpty()){
+            Toast.makeText(context, ErrorWrite, Toast.LENGTH_LONG).show();
+        }
+        else {
+
+            try {
+                if (myTag == null || tagNum == null) {
+                    Toast.makeText(context, ErrorDetected, Toast.LENGTH_LONG).show();
+                } else {
+                    Date date = new Date();
+                    DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                    String dateText = dateFormat.format(date);
+                    String uuid = UUID.randomUUID().toString();
+                    Log log = new Log(tagNum, dateText, facilityId, Integer.valueOf(controlNum), controlNumStatus, workId, companyId, uuid);
+                    db.getLogDao().insert(log);
+
+                    logForCheck = db.getLogDao().getLogs();
+                    for (Log currLog : logForCheck) {
+                        System.out.println(currLog.getUuid() + "\n");
+                    }
+                }
+            } catch (Exception e) {
+                Toast.makeText(context, ErrorWrite, Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     private String hexIdToStringId(byte[] hexId){
@@ -230,6 +251,9 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     public String getCurrentTagId(){
+        if (currentTagId == null){
+            return null;
+        }
         return hexIdToStringId(currentTagId).toUpperCase();
     }
 
@@ -281,7 +305,7 @@ public class MainActivity extends AppCompatActivity  {
             text = new String(payload, languageCodeLength+1, payload.length - languageCodeLength - 1, textEncoding);
             parseText = text.split("-");
         } catch (UnsupportedEncodingException e) {
-            Log.e("кодировка не поддерживается", e.toString());
+            android.util.Log.e("кодировка не поддерживается", e.toString());
         }
 
         viewTag.setText(text);

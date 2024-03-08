@@ -10,7 +10,7 @@ import java.util.List;
 
 @Dao
 public interface LogDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert
     void insert(Log log);
 
     @Query("SELECT * FROM log")

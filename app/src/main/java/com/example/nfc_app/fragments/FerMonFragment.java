@@ -126,6 +126,8 @@ public class FerMonFragment extends Fragment {
                 msg = "`АД-"+editTextDolgonosCount.getText().toString()+"`";
             }
             ((MainActivity)getActivity()).writeTag(msg, editTextControllNumFerMon.getText().toString(), selection);
+            String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
+            ((MainActivity)getActivity()).addNewLogToDb(editTextControllHruschCount.getText().toString(),msg,tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 3);
         }
     };
 
@@ -135,13 +137,13 @@ public class FerMonFragment extends Fragment {
             if (editTextControllHruschCount.getText().toString().isEmpty()){
                 ((MainActivity)getActivity()).writeTag("`МХ-0`", editTextControllHruschCount.getText().toString(), selection);
                 String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
-                ((MainActivity)getActivity()).addNewLogToDb(Integer.valueOf(editTextControllHruschCount.getText().toString()),"`МХ-0`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+                ((MainActivity)getActivity()).addNewLogToDb(editTextControllHruschCount.getText().toString(),"`МХ-0`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 3);
 
             }
             else{
                 ((MainActivity)getActivity()).writeTag("`МХ-"+editTextControllHruschCount.getText()+"`", editTextControllNumFerMon.getText().toString(), selection);
                 String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
-                ((MainActivity)getActivity()).addNewLogToDb(Integer.valueOf(editTextControllHruschCount.getText().toString()),"`МХ-"+editTextControllHruschCount.getText()+"`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+                ((MainActivity)getActivity()).addNewLogToDb(editTextControllHruschCount.getText().toString(),"`МХ-"+editTextControllHruschCount.getText()+"`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 3);
 
             }
         }

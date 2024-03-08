@@ -133,9 +133,10 @@ public class DeratizationFragment extends Fragment {
     View.OnClickListener button50OnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+
             ((MainActivity)getActivity()).writeTag("`Погрыз`", editTextControllNum.getText().toString(), selection);
             String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
-            ((MainActivity)getActivity()).addNewLogToDb(Integer.valueOf(editTextControllNum.getText().toString()),"`Погрыз`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+            ((MainActivity)getActivity()).addNewLogToDb(editTextControllNum.getText().toString(),"`Погрыз`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
 
         }
     };
@@ -144,7 +145,7 @@ public class DeratizationFragment extends Fragment {
         public void onClick(View v) {
             ((MainActivity)getActivity()).writeTag("`Гр`", editTextControllNum.getText().toString(), selection);
             String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
-            ((MainActivity)getActivity()).addNewLogToDb(Integer.valueOf(editTextControllNum.getText().toString()),"`Гр`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+            ((MainActivity)getActivity()).addNewLogToDb(editTextControllNum.getText().toString(),"`Гр`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
 
         }
     };
@@ -154,7 +155,7 @@ public class DeratizationFragment extends Fragment {
         public void onClick(View v) {
             ((MainActivity)getActivity()).writeTag("`КонтПовр`", editTextControllNum.getText().toString(), selection);
             String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
-            ((MainActivity)getActivity()).addNewLogToDb(Integer.valueOf(editTextControllNum.getText().toString()),"`КонтПовр`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+            ((MainActivity)getActivity()).addNewLogToDb(editTextControllNum.getText().toString(),"`КонтПовр`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
 
         }
     };
@@ -164,7 +165,7 @@ public class DeratizationFragment extends Fragment {
         public void onClick(View v) {
             ((MainActivity)getActivity()).writeTag("`МехПовр`", editTextControllNum.getText().toString(), selection);
             String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
-            ((MainActivity)getActivity()).addNewLogToDb(Integer.valueOf(editTextControllNum.getText().toString()),"`МехПовр`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+            ((MainActivity)getActivity()).addNewLogToDb(editTextControllNum.getText().toString(),"`МехПовр`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
 
         }
     };
@@ -174,7 +175,7 @@ public class DeratizationFragment extends Fragment {
         public void onClick(View v) {
             ((MainActivity)getActivity()).writeTag("`КонтНед`", editTextControllNum.getText().toString(), selection);
             String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
-            ((MainActivity)getActivity()).addNewLogToDb(Integer.valueOf(editTextControllNum.getText().toString()),"`КонтНед`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+            ((MainActivity)getActivity()).addNewLogToDb(editTextControllNum.getText().toString(),"`КонтНед`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
 
         }
     };
@@ -184,7 +185,7 @@ public class DeratizationFragment extends Fragment {
         public void onClick(View v) {
             ((MainActivity)getActivity()).writeTag("`КонтОт`", editTextControllNum.getText().toString(), selection);
             String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
-            ((MainActivity)getActivity()).addNewLogToDb(Integer.valueOf(editTextControllNum.getText().toString()),"`КонтОт`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+            ((MainActivity)getActivity()).addNewLogToDb(editTextControllNum.getText().toString(),"`КонтОт`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
 
         }
     };
@@ -194,7 +195,7 @@ public class DeratizationFragment extends Fragment {
         public void onClick(View v) {
             ((MainActivity)getActivity()).writeTag("`ПрОт`", editTextControllNum.getText().toString(), selection);
             String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
-            ((MainActivity)getActivity()).addNewLogToDb(Integer.valueOf(editTextControllNum.getText().toString()),"`ПрОт`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+            ((MainActivity)getActivity()).addNewLogToDb(editTextControllNum.getText().toString(),"`ПрОт`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
 
         }
     };
@@ -204,7 +205,7 @@ public class DeratizationFragment extends Fragment {
         public void onClick(View v) {
             ((MainActivity)getActivity()).writeTag("`+`", editTextControllNum.getText().toString(), selection);
             String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
-            ((MainActivity)getActivity()).addNewLogToDb(Integer.valueOf(editTextControllNum.getText().toString()),"`+`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+            ((MainActivity)getActivity()).addNewLogToDb(editTextControllNum.getText().toString(),"`+`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
 
         }
     };
