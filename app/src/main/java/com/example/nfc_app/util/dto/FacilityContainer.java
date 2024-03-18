@@ -8,6 +8,14 @@ public class FacilityContainer {
     @SerializedName("name")
     private String name;
 
+    @SerializedName("isActive")
+    private int isActive;
+
+    public FacilityContainer(String name, int isActive) {
+        this.name = name;
+        this.isActive = isActive;
+    }
+
     @Override
     public String toString(){
         return getName();
@@ -27,5 +35,9 @@ public class FacilityContainer {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getIsActive() {
+        return isActive;
     }
 }

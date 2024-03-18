@@ -23,12 +23,15 @@ import android.widget.Toast;
 
 import com.example.nfc_app.R;
 import com.example.nfc_app.connection.CheckConnection;
+import com.example.nfc_app.connection.NetworkUtils;
+import com.example.nfc_app.connection.UpdateFacilities;
+import com.example.nfc_app.db.CompanyDb;
+import com.example.nfc_app.db.Facility;
+import com.example.nfc_app.db.FacilityDb;
 import com.example.nfc_app.db.Log;
 import com.example.nfc_app.db.LogDb;
 import com.example.nfc_app.util.LocalStorage;
-import com.example.nfc_app.util.dto.AddLogRequestDto;
-import com.example.nfc_app.util.dto.LogResponseDto;
-import com.example.nfc_app.util.requsests.NetworkService;
+import com.example.nfc_app.util.dto.FacilityContainer;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -36,15 +39,12 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.UUID;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity  {
 
@@ -54,7 +54,9 @@ public class MainActivity extends AppCompatActivity  {
     private DezinsecFragment dezinsecFragment;
     private AuthorizeFragment authorizeFragment;
 
-    private LogDb db;
+    private LogDb logDb;
+    private CompanyDb companyDb;
+    private FacilityDb facilityDb;
     private List<Log> logForCheck;
 
     public static final String ErrorDetected = "NFC метка не найдена";
@@ -79,12 +81,18 @@ public class MainActivity extends AppCompatActivity  {
         getSupportActionBar().hide();
         setTheme(R.style.Theme_MainFragment);
 
-        db = Room.databaseBuilder(getApplicationContext(),LogDb.class,"populus-database").allowMainThreadQueries().fallbackToDestructiveMigration().build();
-        LocalStorage.storage.put("db", db);
+        logDb = Room.databaseBuilder(getApplicationContext(),LogDb.class,"log-database").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        LocalStorage.storage.put("db", logDb);
+
+        companyDb = Room.databaseBuilder(getApplicationContext(),CompanyDb.class,"company-database").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        LocalStorage.storage.put("companyDb", companyDb);
+
+        facilityDb = Room.databaseBuilder(getApplicationContext(),FacilityDb.class,"facility-database").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        LocalStorage.storage.put("facilityDb", facilityDb);
+
 
         Timer timer = new Timer();
-        final int MILLISECONDS = 10000;
-        timer.schedule(new CheckConnection(this, db), 0, MILLISECONDS);
+        timer.schedule(new CheckConnection(this, logDb), 0, 10000);
 
         nfcFragment = new DeratizationFragment();
         LocalStorage.storage.put("nfcFragment", nfcFragment);
@@ -126,12 +134,30 @@ public class MainActivity extends AppCompatActivity  {
         tagDetected.addCategory(Intent.CATEGORY_DEFAULT);
         writingTagFilter = new IntentFilter[]{tagDetected};
 
-        LocalStorage.storage.put("current fragment", LocalStorage.fragments.AuthorizeFragment);
-        authorizeFragment = new AuthorizeFragment();
+        List<Facility> facilities = facilityDb.getFacilityDao().getAllFacilities();
 
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frameLayout, authorizeFragment)
-                .commit();
+        if (NetworkUtils.isNetworkAvailable(context)|| facilities.isEmpty()){
+            LocalStorage.storage.put("current fragment", LocalStorage.fragments.AuthorizeFragment);
+            authorizeFragment = new AuthorizeFragment();
+
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.frameLayout, authorizeFragment)
+                    .commit();
+        }
+        else{
+            List<FacilityContainer> facilityContainers = new ArrayList<>();
+            for (Facility facility:facilities){
+                if (facility.getIsActive() == 1)
+                    facilityContainers.add(new FacilityContainer(facility.getName(), facility.getIsActive()));
+            }
+            LocalStorage.facilityContainers = facilityContainers;
+            LocalStorage.storage.put("current fragment", LocalStorage.fragments.MainFragment);
+            mainFragment = new MainFragment();
+
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.frameLayout, mainFragment)
+                    .commit();
+        }
     }
 
     private void writeLog(String log) {
@@ -178,10 +204,10 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     public void addNewLogToDb(String controlNum, String controlNumStatus, String tagNum, int companyId, int facilityId, int workId){
+        String action = getIntent().getAction();
         if (controlNum.isEmpty()){
             Toast.makeText(context, ErrorWrite, Toast.LENGTH_LONG).show();
-        }
-        else {
+        } else {
 
             try {
                 if (myTag == null || tagNum == null) {
@@ -192,12 +218,14 @@ public class MainActivity extends AppCompatActivity  {
                     String dateText = dateFormat.format(date);
                     String uuid = UUID.randomUUID().toString();
                     Log log = new Log(tagNum, dateText, facilityId, Integer.valueOf(controlNum), controlNumStatus, workId, companyId, uuid);
-                    db.getLogDao().insert(log);
+                    logDb.getLogDao().insert(log);
 
-                    logForCheck = db.getLogDao().getLogs();
+                    logForCheck = logDb.getLogDao().getLogs();
                     for (Log currLog : logForCheck) {
                         System.out.println(currLog.getUuid() + "\n");
                     }
+
+                    currentTagId = null;
                 }
             } catch (Exception e) {
                 Toast.makeText(context, ErrorWrite, Toast.LENGTH_LONG).show();

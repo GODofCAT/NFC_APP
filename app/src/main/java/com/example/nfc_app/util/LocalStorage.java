@@ -14,7 +14,8 @@ public class LocalStorage {
       MainFragment,
       NfcFragment,
       DezinsecFragment,
-      FerMonFragment
+      FerMonFragment,
+        PovrChoiceFragment
     }
 
     static public List<FacilityContainer> facilityContainers = null;

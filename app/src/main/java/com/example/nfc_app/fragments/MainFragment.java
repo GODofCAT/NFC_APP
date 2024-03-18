@@ -21,6 +21,7 @@ public class MainFragment extends Fragment {
     Button buttonDeratization;
     Button buttonDezinsect;
     Button buttonFerMon;
+    Button buttonSendLog;
 
     public static MainFragment newInstance(String param1, String param2) {
         MainFragment fragment = new MainFragment();
@@ -51,7 +52,17 @@ public class MainFragment extends Fragment {
 
         buttonFerMon = view.findViewById(R.id.buttonFerMon);
         buttonFerMon.setOnClickListener(buttonFerMonOnClick);
+
+        buttonSendLog = view.findViewById(R.id.buttonSendLog);
+        buttonSendLog.setOnClickListener(buttonSendLogOnClick);
     }
+
+    View.OnClickListener buttonSendLogOnClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+        }
+    };
 
     View.OnClickListener buttonFerMonOnClick = new View.OnClickListener() {
         @Override

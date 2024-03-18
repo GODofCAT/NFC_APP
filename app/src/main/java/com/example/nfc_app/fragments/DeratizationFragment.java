@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -24,14 +25,19 @@ import com.example.nfc_app.util.dto.FacilityContainer;
 
 public class DeratizationFragment extends Fragment {
     TextView textViewTag;
+    Button buttonPogr;
     Button buttonPlus;
-    Button button50;
     Button buttonGr;
     Button buttonPrOt;
-    Button buttonKont;
+    Button buttonKontZam;
     Button buttonMeh;
     Button buttonNed;
     Button buttonOt;
+
+    Button button25per;
+    Button button50per;
+    Button button75per;
+    Button buttonPerCancel;
 
     EditText editTextControllNum;
 
@@ -39,10 +45,12 @@ public class DeratizationFragment extends Fragment {
 
     String selection;
     int selectionId;
+    String controlNum;
 
     ImageButton buttonBack;
 
-
+    LinearLayout coreButtonsLayout;
+    LinearLayout perButtonsLayout;
 
 
     public static DeratizationFragment newInstance() {
@@ -95,23 +103,35 @@ public class DeratizationFragment extends Fragment {
         };
         spinnerWarehouses.setOnItemSelectedListener(itemSelectedListener);
 
-        button50 = view.findViewById(R.id.button50);
+        buttonPogr = view.findViewById(R.id.button50);
         buttonGr = view.findViewById(R.id.buttonGr);
-        buttonKont = view.findViewById(R.id.buttonKont);
+        buttonKontZam = view.findViewById(R.id.buttonKontZam);
         buttonMeh = view.findViewById(R.id.buttonMeh);
         buttonNed = view.findViewById(R.id.buttonNed);
         buttonOt = view.findViewById(R.id.buttonOt);
         buttonPrOt = view.findViewById(R.id.buttonPrOt);
         buttonPlus = view.findViewById(R.id.buttonPlus);
+        button25per = view.findViewById(R.id.button25per);
+        button50per = view.findViewById(R.id.button50per);
+        button75per = view.findViewById(R.id.button75per);
+        buttonPerCancel = view.findViewById(R.id.buttonPerCancel);
 
-        button50.setOnClickListener(button50OnClick);
+        coreButtonsLayout = view.findViewById(R.id.coreButtonsLayout);
+        perButtonsLayout  = view.findViewById(R.id.perButtonsLayout);
+
+        buttonPogr.setOnClickListener(buttonPogrOnClick);
         buttonGr.setOnClickListener(buttonGrOnClick);
-        buttonKont.setOnClickListener(buttonKontOnClick);
+        buttonKontZam.setOnClickListener(buttonKontZamOnClick);
         buttonMeh.setOnClickListener(buttonMehOnClick);
         buttonNed.setOnClickListener(buttonNedOnClick);
         buttonOt.setOnClickListener(buttonOtOnClick);
         buttonPrOt.setOnClickListener(buttonPrOtOnClick);
         buttonPlus.setOnClickListener(buttonPlusOnClick);
+
+        button25per.setOnClickListener(button25OnClick);
+        button50per.setOnClickListener(button50OnClick);
+        button75per.setOnClickListener(button75OnClick);
+        buttonPerCancel.setOnClickListener(buttonPerCancelOnClick);
 
         buttonBack = view.findViewById(R.id.imageButtonBack);
         buttonBack.setOnClickListener(buttonBackOnClick);
@@ -130,85 +150,154 @@ public class DeratizationFragment extends Fragment {
         }
     };
 
+    View.OnClickListener buttonPogrOnClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            isPercentageButtonVisible(true);
+        }
+    };
+
+    View.OnClickListener button25OnClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            controlNum = editTextControllNum.getText().toString();
+            editTextControllNum.setText("");
+            isPercentageButtonVisible(false);
+
+            ((MainActivity)getActivity()).writeTag("`Погрыз-25%`", controlNum, selection);
+            String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
+            ((MainActivity)getActivity()).addNewLogToDb(controlNum,"`Погрыз-25%`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+        }
+    };
+
     View.OnClickListener button50OnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            controlNum = editTextControllNum.getText().toString();
+            editTextControllNum.setText("");
+            isPercentageButtonVisible(false);
 
-            ((MainActivity)getActivity()).writeTag("`Погрыз`", editTextControllNum.getText().toString(), selection);
+
+            ((MainActivity)getActivity()).writeTag("`Погрыз-50%`", controlNum, selection);
             String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
-            ((MainActivity)getActivity()).addNewLogToDb(editTextControllNum.getText().toString(),"`Погрыз`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
-
+            ((MainActivity)getActivity()).addNewLogToDb(controlNum,"`Погрыз-50%`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
         }
     };
+
+    View.OnClickListener button75OnClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            controlNum = editTextControllNum.getText().toString();
+            editTextControllNum.setText("");
+            isPercentageButtonVisible(false);
+
+
+            ((MainActivity)getActivity()).writeTag("`Погрыз-75%`", controlNum, selection);
+            String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
+            ((MainActivity)getActivity()).addNewLogToDb(controlNum,"`Погрыз-75%`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+        }
+    };
+
+    View.OnClickListener buttonPerCancelOnClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            isPercentageButtonVisible(false);
+        }
+    };
+
     View.OnClickListener buttonGrOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            ((MainActivity)getActivity()).writeTag("`Гр`", editTextControllNum.getText().toString(), selection);
-            String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
-            ((MainActivity)getActivity()).addNewLogToDb(editTextControllNum.getText().toString(),"`Гр`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+            controlNum = editTextControllNum.getText().toString();
+            editTextControllNum.setText("");
 
+            ((MainActivity)getActivity()).writeTag("`Гр`", controlNum, selection);
+            String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
+            ((MainActivity)getActivity()).addNewLogToDb(controlNum,"`Гр`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
         }
     };
 
-    View.OnClickListener buttonKontOnClick = new View.OnClickListener() {
+    View.OnClickListener buttonKontZamOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            ((MainActivity)getActivity()).writeTag("`КонтПовр`", editTextControllNum.getText().toString(), selection);
-            String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
-            ((MainActivity)getActivity()).addNewLogToDb(editTextControllNum.getText().toString(),"`КонтПовр`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+            controlNum = editTextControllNum.getText().toString();
+            editTextControllNum.setText("");
 
+            ((MainActivity)getActivity()).writeTag("`КонтЗам`", controlNum, selection);
+            String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
+            ((MainActivity)getActivity()).addNewLogToDb(controlNum,"`КонтПовр`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
         }
     };
 
     View.OnClickListener buttonMehOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            ((MainActivity)getActivity()).writeTag("`МехПовр`", editTextControllNum.getText().toString(), selection);
-            String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
-            ((MainActivity)getActivity()).addNewLogToDb(editTextControllNum.getText().toString(),"`МехПовр`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+            controlNum = editTextControllNum.getText().toString();
+            editTextControllNum.setText("");
 
+            ((MainActivity)getActivity()).writeTag("`МехПовр`", controlNum, selection);
+            String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
+            ((MainActivity)getActivity()).addNewLogToDb(controlNum,"`МехПовр`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
         }
     };
 
     View.OnClickListener buttonNedOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            ((MainActivity)getActivity()).writeTag("`КонтНед`", editTextControllNum.getText().toString(), selection);
-            String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
-            ((MainActivity)getActivity()).addNewLogToDb(editTextControllNum.getText().toString(),"`КонтНед`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+            controlNum = editTextControllNum.getText().toString();
+            editTextControllNum.setText("");
 
+            ((MainActivity)getActivity()).writeTag("`КонтНед`", controlNum, selection);
+            String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
+            ((MainActivity)getActivity()).addNewLogToDb(controlNum,"`КонтНед`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
         }
     };
 
     View.OnClickListener buttonOtOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            ((MainActivity)getActivity()).writeTag("`КонтОт`", editTextControllNum.getText().toString(), selection);
-            String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
-            ((MainActivity)getActivity()).addNewLogToDb(editTextControllNum.getText().toString(),"`КонтОт`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+            controlNum = editTextControllNum.getText().toString();
+            editTextControllNum.setText("");
 
+            ((MainActivity)getActivity()).writeTag("`КонтОт`", controlNum, selection);
+            String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
+            ((MainActivity)getActivity()).addNewLogToDb(controlNum,"`КонтОт`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
         }
     };
 
     View.OnClickListener buttonPrOtOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            ((MainActivity)getActivity()).writeTag("`ПрОт`", editTextControllNum.getText().toString(), selection);
-            String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
-            ((MainActivity)getActivity()).addNewLogToDb(editTextControllNum.getText().toString(),"`ПрОт`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+            controlNum = editTextControllNum.getText().toString();
+            editTextControllNum.setText("");
 
+            ((MainActivity)getActivity()).writeTag("`ПрОт`", controlNum, selection);
+            String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
+            ((MainActivity)getActivity()).addNewLogToDb(controlNum,"`ПрОт`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
         }
     };
 
     View.OnClickListener buttonPlusOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            ((MainActivity)getActivity()).writeTag("`+`", editTextControllNum.getText().toString(), selection);
-            String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
-            ((MainActivity)getActivity()).addNewLogToDb(editTextControllNum.getText().toString(),"`+`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
+            controlNum = editTextControllNum.getText().toString();
+            editTextControllNum.setText("");
 
+            ((MainActivity)getActivity()).writeTag("`+`", controlNum, selection);
+            String tagNum = ((MainActivity)getActivity()).getCurrentTagId();
+            ((MainActivity)getActivity()).addNewLogToDb(controlNum,"`+`",tagNum,Integer.valueOf(LocalStorage.storage.get("companyId").toString()),selectionId, 1);
         }
     };
+
+    private void isPercentageButtonVisible(boolean isVisible){
+        if (isVisible){
+            coreButtonsLayout.setVisibility(View.GONE);
+            perButtonsLayout.setVisibility(View.VISIBLE);
+        }else {
+            coreButtonsLayout.setVisibility(View.VISIBLE);
+            perButtonsLayout.setVisibility(View.GONE);
+        }
+    }
 
 
 }
